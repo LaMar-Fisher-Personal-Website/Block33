@@ -214,7 +214,10 @@ async function rebuildDB() {
   } catch (error) {
     console.log('Error during rebuildDB')
     throw error;
-  }
+  } finally {
+    //Close the database connection after all operations are done
+    client.end();
+}
 }
 
 module.exports = {

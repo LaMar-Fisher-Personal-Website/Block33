@@ -4,6 +4,23 @@ const jwt = require('jsonwebtoken');
 const { getUserById } = require('../db');
 const client = require('../db/client');
 const { JWT_SECRET = 'neverTell'} = process.env;
+const userId = 123; // Replace with the user's ID
+const token = jwt.sign({ userId }, JWT_SECRET, { expiresIn: '1h' });
+
+console.log('Generated JWT token:', token);
+
+//Authentication middleware
+router.use(async (req, res, next) => {
+  // authenicaation logic
+});
+
+//Logging middleware
+router.use(async (req, res, next) => {
+  if (req.user) {
+    console.log("User is set: ", req.user)
+  }
+  next();
+});
 
 // GET /api/health
 router.get('/health', async (req, res, next) => {

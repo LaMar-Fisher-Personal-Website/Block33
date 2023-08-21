@@ -44,11 +44,11 @@ describe('API', () => {
           tooShortResponse = err.response;
         }
       })
-      it('Creates a new user.', () => {
+      it('Creates a new user.', async () => {
         expect(typeof registeredUser).toEqual('object');
         expect(registeredUser.username).toEqual(newUser.username);
       });
-      it('Requires username and password. Requires all passwords to be at least 8 characters long.', () => {
+      it('Requires username and password. Requires all passwords to be at least 8 characters long.', async () => {
         expect(newUser.password.length).toBeGreaterThan(7);
       });
       it('EXTRA CREDIT: Hashes password before saving user to DB.', async () => {
